@@ -29,7 +29,6 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'mailgun-ruby', '~> 1.1.10'
 
 group :test do
-  gem 'rspec-rails'
   # Test coverage
   gem 'coveralls', require: false
 end
@@ -51,6 +50,12 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Rspec testing framework
+  gem 'rspec-rails'
+  # Factory bot: factories for testing
+  gem 'factory_bot_rails'
+  # Shoulda Matchers: matchers for testing -- experimental gem for Rails 5
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 # Use CoffeeScript for .coffee assets and views
