@@ -11,20 +11,17 @@
 #     { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-nus = University.create(name: 'National University of Singapore',
-    domain: 'u.nus.edu')
-smrt = University.create(name: 'SMRT', domain: 'smrt.sg')
+nus = University.create(name: 'National University of Singapore')
+smrt = University.create(name: 'SMRT')
 
 tiffany = User.create(name: 'Tiffany',
   password: '123456',
   email: 'sciffany@gmail.com',
-  university: nus,
-  verified: true)
+  university: nus)
 julius = User.create(name: 'Julius',
  password: '123456',
  email: 'test@test.com',
- university: nus,
- verified: true)
+ university: nus)
 User.create(name: 'Jeffrey',
 password: 'han hock',
 email: 'jeffrey@smrt.sg',
