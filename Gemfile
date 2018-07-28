@@ -33,7 +33,7 @@ gem 'bootstrap'
 # jQuery
 gem 'jquery-rails'
 # FontAwesome!
-gem 'font-awesome-sass', '~> 5.2.0'
+gem 'font-awesome-sass', '~> 5.0.0'
 
 group :test do
   # Test coverage
