@@ -11,8 +11,9 @@ Rails.application.routes.draw do
       resources :papers, shallow: true, only: %i[index new create] do
         resources :questions, shallow: true, only: %i[index new create] do
           resources :answers, shallow: true, only: %i[index new create] do
+            post '/votes/up', to: 'votes#up'
+            post '/votes/down', to: 'votes#down'
             resources :comments, shallow: true, only: %i[index new create]
-            resources :votes, shallow: true
           end
         end
       end

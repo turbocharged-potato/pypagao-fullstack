@@ -30,4 +30,12 @@ class Answer < ApplicationRecord
   has_many :votes, dependent: :destroy
 
   validates :content, presence: true
+
+  def score
+    Vote.where(answer_id: id, score: 1).count - Vote.where(answer_id: id, score: -1).count
+  end
+
+  def score_of(user)
+    Vote.find_by(answer_id: id, user_id: user.id)&.score || 0
+  end
 end

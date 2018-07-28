@@ -32,6 +32,8 @@ gem 'mailgun-ruby', '~> 1.1.10'
 gem 'bootstrap'
 # jQuery
 gem 'jquery-rails'
+# FontAwesome!
+gem 'font-awesome-sass', '~> 5.2.0'
 
 group :test do
   # Test coverage

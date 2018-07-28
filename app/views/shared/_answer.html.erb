@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-1">
+        <div class="row justify-content-center">
+          <%= link_to icon('fas', 'chevron-up'), answer_votes_up_path(answer.id), method: 'POST', class: answer.score_of(current_user) == 1 ? 'selected' : 'not-selected' %>
+        </div>
+        <div class="row justify-content-center"><%= answer.score %></div>
+        <div class="row justify-content-center">
+          <%= link_to icon('fas', 'chevron-down'), answer_votes_down_path(answer.id), method: 'POST', class: answer.score_of(current_user) == -1 ? 'selected' : 'not-selected' %>
+        </div>
+      </div>
+      <div class="col-11">
+        <%= answer.content %>
+      </div>
+    </div>
+  </div>
+</div>

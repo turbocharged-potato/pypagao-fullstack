@@ -57,10 +57,11 @@ ActiveRecord::Schema.define(version: 2018_07_28_090407) do
 
   create_table "questions", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "number", null: false
     t.bigint "paper_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_questions_on_name", unique: true
+    t.index ["number"], name: "index_questions_on_number", unique: true
     t.index ["paper_id"], name: "index_questions_on_paper_id"
   end
 
@@ -105,9 +106,10 @@ ActiveRecord::Schema.define(version: 2018_07_28_090407) do
   create_table "votes", force: :cascade do |t|
     t.bigint "answer_id", null: false
     t.bigint "user_id", null: false
-    t.integer "score", null: false
+    t.integer "score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["answer_id", "user_id"], name: "index_votes_on_answer_id_and_user_id", unique: true
     t.index ["answer_id"], name: "index_votes_on_answer_id"
     t.index ["score"], name: "index_votes_on_score", using: :hash
     t.index ["user_id"], name: "index_votes_on_user_id"
