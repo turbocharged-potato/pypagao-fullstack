@@ -112,8 +112,9 @@ end
 
 ### SECURITY
 
+gem 'devise'
+
 group :development, :test do
   # Security checkup
   gem 'brakeman'
-  gem 'devise'
 end
