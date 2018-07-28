@@ -28,6 +28,11 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 # Mailgun
 gem 'mailgun-ruby', '~> 1.1.10'
 
+# Bootstrap
+gem 'bootstrap'
+# jQuery
+gem 'jquery-rails'
+
 group :test do
   # Test coverage
   gem 'coveralls', require: false
@@ -45,7 +50,6 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
 end
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -72,8 +76,6 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-
 
 
 group :test do
