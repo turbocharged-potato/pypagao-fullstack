@@ -5,8 +5,8 @@ bundler_args: "--without production development"
 services: postgresql
 
 env:
-  - COMMAND="bundle exec rspec && bundle exec rubocop -D -f simple"
-  - COMMAND="bundle exec brakeman && bundle exec scss-lint app/assets/stylesheets && bundle exec rake traceroute FAIL_ON_ERROR=1"
+  - COMMAND="bundle exec rspec && bundle exec rubocop -D -f simple && bundle exec scss-lint app/assets/stylesheets"
+  - COMMAND="bundle exec brakeman && bundle exec rake traceroute FAIL_ON_ERROR=1"
 
 matrix:
   fast_finish: true
