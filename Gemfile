@@ -115,4 +115,5 @@ end
 group :development, :test do
   # Security checkup
   gem 'brakeman'
+  gem 'devise'
 end
