@@ -1,7 +1,9 @@
+@import 'colors';
+
 .selected {
-  color: orange;
+  color: $orange;
 }
 
 .not-selected {
-  color: black;
+  color: $black;
 }
