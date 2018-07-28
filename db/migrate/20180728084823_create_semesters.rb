@@ -8,5 +8,7 @@ class CreateSemesters < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_index :semesters, [:start_year, :end_year, :number]
   end
 end
