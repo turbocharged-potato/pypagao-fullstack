@@ -9,7 +9,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '4d70ab2a09c55e6c2aa4e81a9c93831b8e9c27f9df557378293f92c98ce3f5539c4f5d9deaa38eca1c527469d270a634b7528ce261177a27ae701fa6a2e9896d'
+  config.secret_key = '4d70ab2a09c55e6c2aa4e81a9c93831b8e9c27f9df557378293f92c98ce3f5539c4f5d9deaa38eca1c527469d270a634b7528ce261177a27ae701fa6a2e9896d'
   # rubocop:enable Metrics/LineLength
 
   # ==> Controller configuration
