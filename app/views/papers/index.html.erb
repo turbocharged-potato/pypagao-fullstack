@@ -1,0 +1,26 @@
+</p>
+
+<div class="input-group">
+
+  <%= form_tag("/courses", method: "get") do %>
+      <%= label_tag(:code, "Type in course name:") %>
+      <%= text_field_tag (:code), "e.g. 'CS1101S'", class: 'form-control' %></p>
+      <span class="input-group-btn">
+        <%= submit_tag "Search", class: 'btn btn-primary', disabled: true %>
+      </span>
+      <span class="input-group-btn">
+        <%= submit_tag "+", class: 'btn btn-primary', disabled: true %>
+      </span>
+  <% end %>
+</div>
+
+<div>
+
+</p>
+<b><%= @course.code %></p></b>
+<b>Semester <%= @semester.number %></p></b>
+<% @papers.each do |paper| %>
+	<%= link_to paper.name, paper_questions_url(paper.id), method: :get, class: 'btn btn-primary'%>
+<% end %>
+
+</div>
