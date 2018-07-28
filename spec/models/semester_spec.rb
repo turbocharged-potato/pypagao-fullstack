@@ -14,7 +14,8 @@
 #
 # Indexes
 #
-#  index_semesters_on_course_id  (course_id)
+#  index_semesters_on_course_id                           (course_id)
+#  index_semesters_on_start_year_and_end_year_and_number  (start_year,end_year,number)
 #
 # Foreign Keys
 #

@@ -12,6 +12,7 @@
 #
 # Indexes
 #
+#  index_courses_on_code           (code) UNIQUE
 #  index_courses_on_university_id  (university_id)
 #
 # Foreign Keys

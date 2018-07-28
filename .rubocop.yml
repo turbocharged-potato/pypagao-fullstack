@@ -35,6 +35,9 @@ Metrics/ClassLength:
   Exclude:
     - 'spec/**/*'
 
+Metrics/LineLength:
+  Max: 100
+
 Naming/FileName:
   Exclude:
     - 'Capfile'
