@@ -12,5 +12,11 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe CoursesHelper, type: :helper do
+RSpec.describe ApplicationHelper, type: :helper do
+  describe '#flash_class' do
+    it 'returns correctly alert-success' do
+      expect(helper.flash_class(:notice)).to eq('alert alert-success alert-dismissible')
+      expect(helper.flash_class(:alert)).to eq('alert alert-danger alert-dismissible')
+    end
+  end
 end
