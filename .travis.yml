@@ -14,7 +14,7 @@ matrix:
     - env: COMMAND="bundle exec brakeman && bundle exec scss-lint app/assets/stylesheets && bundle exec rake traceroute FAIL_ON_ERROR=1"
 
 before_script:
-  - psql -c 'create database takoyaki_test;' -U postgres
+  - psql -c 'create database pypagao_fullstack_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
 
 script:
