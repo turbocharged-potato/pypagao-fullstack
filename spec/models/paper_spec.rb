@@ -23,6 +23,7 @@
 require 'rails_helper'
 
 RSpec.describe Paper, type: :model do
+  let!(:paper) { create(:paper) }
   it { should belong_to(:semester) }
   it { should have_many(:questions).dependent(:destroy) }
   it { should validate_presence_of(:name) }
