@@ -5,10 +5,10 @@
 # Table name: courses
 #
 #  id            :bigint(8)        not null, primary key
-#  code          :string
+#  code          :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  university_id :bigint(8)
+#  university_id :bigint(8)        not null
 #
 # Indexes
 #
@@ -23,5 +23,13 @@
 require 'rails_helper'
 
 RSpec.describe Course, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:course) { create(:course) }
+  it { should belong_to(:university) }
+  it { should have_many(:semesters).dependent(:destroy) }
+  it { should validate_presence_of(:code) }
+  it { should validate_uniqueness_of(:code).ignoring_case_sensitivity }
+
+  it 'has a valid factory' do
+    expect(build(:course)).to be_valid
+  end
 end

@@ -10,14 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_28_085312) do
+ActiveRecord::Schema.define(version: 2018_07_28_090407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "answers", force: :cascade do |t|
+    t.string "content", null: false
+    t.string "imgur"
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content", null: false
+    t.bigint "user_id", null: false
+    t.bigint "answer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_comments_on_answer_id"
+    t.index ["created_at"], name: "index_comments_on_created_at"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
-    t.string "code"
-    t.bigint "university_id"
+    t.string "code", null: false
+    t.bigint "university_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_courses_on_code", unique: true
@@ -25,36 +47,39 @@ ActiveRecord::Schema.define(version: 2018_07_28_085312) do
   end
 
   create_table "papers", force: :cascade do |t|
-    t.string "name"
-    t.bigint "semester_id"
+    t.string "name", null: false
+    t.bigint "semester_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_papers_on_name", unique: true
     t.index ["semester_id"], name: "index_papers_on_semester_id"
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "name"
-    t.bigint "paper_id"
+    t.string "name", null: false
+    t.bigint "paper_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_questions_on_name", unique: true
     t.index ["paper_id"], name: "index_questions_on_paper_id"
   end
 
   create_table "semesters", force: :cascade do |t|
-    t.integer "start_year"
-    t.integer "end_year"
-    t.integer "number"
-    t.bigint "course_id"
+    t.integer "start_year", null: false
+    t.integer "end_year", null: false
+    t.integer "number", null: false
+    t.bigint "course_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_semesters_on_course_id"
-    t.index ["start_year", "end_year", "number"], name: "index_semesters_on_start_year_and_end_year_and_number"
+    t.index ["start_year", "end_year", "number"], name: "index_semesters_on_start_year_and_end_year_and_number", unique: true
   end
 
   create_table "universities", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_universities_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,9 +102,26 @@ ActiveRecord::Schema.define(version: 2018_07_28_085312) do
     t.index ["university_id"], name: "index_users_on_university_id"
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "answer_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "score", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_votes_on_answer_id"
+    t.index ["score"], name: "index_votes_on_score", using: :hash
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
+  add_foreign_key "comments", "answers"
+  add_foreign_key "comments", "users"
   add_foreign_key "courses", "universities"
   add_foreign_key "papers", "semesters"
   add_foreign_key "questions", "papers"
   add_foreign_key "semesters", "courses"
   add_foreign_key "users", "universities"
+  add_foreign_key "votes", "answers"
+  add_foreign_key "votes", "users"
 end

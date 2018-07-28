@@ -5,13 +5,14 @@
 # Table name: questions
 #
 #  id         :bigint(8)        not null, primary key
-#  name       :string
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  paper_id   :bigint(8)
+#  paper_id   :bigint(8)        not null
 #
 # Indexes
 #
+#  index_questions_on_name      (name) UNIQUE
 #  index_questions_on_paper_id  (paper_id)
 #
 # Foreign Keys
@@ -21,7 +22,7 @@
 
 FactoryBot.define do
   factory :question do
-    name 'MyString'
-    paper nil
+    sequence(:name, &:to_s)
+    paper
   end
 end
