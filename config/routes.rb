@@ -12,6 +12,7 @@ Rails.application.routes.draw do
           resources :answers, shallow: true, only: %i[index new create] do
             resources :comments, shallow: true, only: %i[index new create]
             resources :votes, shallow: true
+          end
         end
       end
     end
