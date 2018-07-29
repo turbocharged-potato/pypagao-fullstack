@@ -27,6 +27,9 @@
           <%= answer.created_at %>
         </div>
       </div>
+      <div class="col-4 text-right">
+        <%= link_to "#{answer.comments.size}&nbsp;comments".html_safe, answer_comments_path(answer.id) %>
+      </div>
       <div class="col-4">
         <% if answer.user.id == current_user.id %>
           <div class="row justify-content-center">
@@ -34,9 +37,6 @@
             <%= link_to icon('fas', 'trash-alt'), answer_path(id: answer.id), method: :delete, 'data-confirm' => 'Are you sure?', class: 'btn btn-sm btn-danger' %>
           </div>
         <% end %>
-      </div>
-      <div class="col-4 text-right">
-        <%= link_to "#{answer.comments.size}&nbsp;comments".html_safe, answer_comments_path(answer.id) %>
       </div>
     </div>
   </div>

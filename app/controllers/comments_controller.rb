@@ -34,6 +34,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    answer_id = comment.answer.id
+    redirect_back_or_to answer_comments_path(answer_id) if comment.destroy
+  end
+
   private
 
   def create_comment_params
