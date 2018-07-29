@@ -32,7 +32,7 @@ class Semester < ApplicationRecord
   validate :start_year_right_before_end_year
 
   def start_year_right_before_end_year
-    errors.add(:end_year, 'must be right after start_year') unless
+    errors.add(:end_year, 'must be right after start year') unless
       end_year && start_year && end_year - start_year == 1
   end
 end
