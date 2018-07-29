@@ -3,9 +3,7 @@
 class PapersController < ApplicationController
   # /semesters/1/paper - lists papers
   def index
-    @semester = Semester.find_by(id: params[:semester_id])
-    @course = @semester.course
-    @papers = @semester.papers
+    @semester = Semester.eager_load(:papers).find(params[:semester_id])
     @paper = Paper.new
   end
 

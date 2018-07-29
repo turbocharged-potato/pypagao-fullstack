@@ -25,7 +25,7 @@
       </div>
       <div class="modal-body">
                 
-        <%= form_for @course, url: {action: "create"} do |f| %>
+        <%= form_for Course.new, url: {action: "create"} do |f| %>
           <%= label_tag(:code, "Code:") %>
           <%= f.text_field :code,  class: 'form-control'%>
 

@@ -3,7 +3,7 @@
 class SemestersController < ApplicationController
   # /courses/1/semester - lists semester
   def index
-    @course = Course.find_by(id: params[:course_id])
+    @course = Course.find(params[:course_id])
     @semester = Semester.new
     @semesters = @course.semesters
                         .sort { |a, b| b[:number] <=> a[:number] }

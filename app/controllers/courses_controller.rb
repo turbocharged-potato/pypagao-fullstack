@@ -10,10 +10,9 @@ class CoursesController < ApplicationController
     course = courses_by_university.find_by(code: params[:code].upcase) if params[:code]
     redirection(course) if params[:code]
   end
-  
+
   def create
     course = Course.new course_params
-    course.university_id = current_user.university_id
     if course.save
       redirect_to course_semesters_url(course.id), notice: 'New course created'
     else
@@ -33,6 +32,6 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:code)
+    params.require(:course).permit(:code).merge(university_id: current_user.university_id)
   end
 end
