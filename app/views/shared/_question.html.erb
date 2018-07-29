@@ -1,0 +1,20 @@
+<div class="card my-2">
+  <div class="card-header">
+    <% if local_assigns[:question_view] %>
+      <%= link_to "Question #{question.number}", question_answers_path(question.id) %>
+    <% else %>
+      Question <%= question.number %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><%= question.name %></p>
+      <footer class="blockquote-footer"><%= question.paper.formatted %></footer>
+    </blockquote>
+    <% if local_assigns[:question_view] %>
+      <% question.answers.sort { |a, b| b.score <=> a.score }.take(2).each do |answer| %>
+        <%= render "shared/answer", answer: answer %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
