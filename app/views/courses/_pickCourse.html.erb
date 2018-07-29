@@ -1,11 +1,9 @@
-</p>
-
-<div class="input-group">
+<div class="input-group mt-3">
 
   <%= form_tag("/courses", method: "get") do %>
       <h3><%= label_tag(:code, "Course search:") %></h3>
    	
-      <%= text_field_tag (:code), "", placeholder: "e.g. 'CS1101S'", class: 'form-control' %></p>
+      <%= text_field_tag (:code), "", placeholder: "e.g. 'CS1101S'", class: 'form-control' %>
       <%= submit_tag "Search", class: 'btn btn-primary' %>
       <%= link_to "+", "#createCourse", class: "btn btn-primary", "data-toggle" => "modal" %>
    	

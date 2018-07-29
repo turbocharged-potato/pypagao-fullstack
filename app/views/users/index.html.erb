@@ -1,8 +1,6 @@
-</p><h1>Top Contributors</h1>
+<h1 class="mt-3">Top Contributors</h1>
 
-</p>
 <% @users.each do |user| %>
 	<%= link_to user.name, user_path(user.id), method: :get %>
 	<%= user.university.name %>
-	</p>
 <% end %>
