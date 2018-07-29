@@ -14,8 +14,8 @@
 #
 # Indexes
 #
-#  index_semesters_on_course_id                           (course_id)
-#  index_semesters_on_start_year_and_end_year_and_number  (start_year,end_year,number) UNIQUE
+#  index_semesters_on_course_id  (course_id)
+#  unique_constraint_thingy      (start_year,end_year,number,course_id) UNIQUE
 #
 # Foreign Keys
 #
