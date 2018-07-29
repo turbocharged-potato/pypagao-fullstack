@@ -3,7 +3,7 @@
 <div class="input-group">
 
   <%= form_tag("/courses", method: "get") do %>
-      <%= label_tag(:code, "Type in course name:") %>
+      <h3><%= label_tag(:code, "Course search:") %></h3>
    	
       <%= text_field_tag (:code), "", placeholder: "e.g. 'CS1101S'", class: 'form-control' %></p>
       <%= submit_tag "Search", class: 'btn btn-primary' %>
