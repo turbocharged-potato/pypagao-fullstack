@@ -27,7 +27,7 @@ RSpec.describe Paper, type: :model do
   it { should belong_to(:semester) }
   it { should have_many(:questions).dependent(:destroy) }
   it { should validate_presence_of(:name) }
-  it { should validate_uniqueness_of(:name).ignoring_case_sensitivity }
+  it { should validate_uniqueness_of(:name).ignoring_case_sensitivity.scoped_to(:semester_id) }
 
   it 'has a valid factory' do
     expect(build(:paper)).to be_valid
