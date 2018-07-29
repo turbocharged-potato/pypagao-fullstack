@@ -11,14 +11,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  def ensure_params_fields(fields)
-    all_present = fields.reduce(true) do |acc, field|
-      params[field].present? && acc
-    end
-    unless all_present
-      alert('Lacking a param')
-      return
-    end
-    true
-  end
 end
