@@ -1,0 +1,17 @@
+<%= link_to 'Back to question', question_answers_path(@answer.question.id), class: 'btn btn-primary mt-1 btn-sm' %>
+<h2>Answer</h2>
+<%= render "shared/answer", answer: @answer, current_user: @current_user %>
+<h2>Comments</h2>
+<% @comments.each do |comment| %>
+  <%= render "comment", comment: comment, current_user: @current_user %>
+<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_for(@comment, url: { action: 'create' }) do |c| %>
+      <div class="form-group">
+        <%= c.text_area :content, class: 'form-control', rows: 3 %>
+      </div>
+      <%= c.submit 'Comment', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

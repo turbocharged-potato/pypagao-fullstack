@@ -24,6 +24,8 @@
 #
 
 class Comment < ApplicationRecord
+  default_scope { eager_load(:user).order(:created_at) }
+
   belongs_to :user
   belongs_to :answer
   validates :content, presence: true

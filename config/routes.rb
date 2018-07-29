@@ -13,7 +13,7 @@ Rails.application.routes.draw do
           resources :answers, shallow: true, only: %i[index create update destroy] do
             post '/votes/up', to: 'votes#up'
             post '/votes/down', to: 'votes#down'
-            resources :comments, shallow: true, only: %i[index new create]
+            resources :comments, shallow: true, only: %i[index create update destroy]
           end
         end
       end
