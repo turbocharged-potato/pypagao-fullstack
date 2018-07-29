@@ -27,6 +27,6 @@ class Paper < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: [:semester_id] }
 
   def formatted
-    "#{semester.course.code} #{semester.formatted} #{name}"
+    "#{semester.formatted} #{name}"
   end
 end

@@ -55,8 +55,9 @@ RSpec.describe Semester, type: :model do
 
   describe '#formatted' do
     it 'formats correctly ' do
-      semester = build(:semester, start_year: 2018, end_year: 2019, number: 1)
-      expect(semester.formatted).to eq('2018/2019 Semester 1')
+      course = build(:course, code: 'CS1101S')
+      semester = build(:semester, start_year: 2018, end_year: 2019, number: 1, course: course)
+      expect(semester.formatted).to eq('CS1101S 2018/2019 Semester 1')
     end
   end
 end

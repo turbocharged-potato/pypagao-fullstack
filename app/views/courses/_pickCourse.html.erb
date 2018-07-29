@@ -1,14 +1,13 @@
+<h4 class="mt-3"><%=@university.name%></h4>
 <div class="input-group mt-3">
-
-  <%= form_tag("/courses", method: "get") do %>
-      <h3><%= label_tag(:code, "Course search:") %></h3>
-   	
-      <%= text_field_tag (:code), "", placeholder: "e.g. 'CS1101S'", class: 'form-control' %>
-      <%= submit_tag "Search", class: 'btn btn-primary' %>
-      <%= link_to "+", "#createCourse", class: "btn btn-primary", "data-toggle" => "modal" %>
-   	
-  <% end %>
-
+    <%= form_tag(university_courses_url(@university.id), method: "get") do %>
+        <h6><%= label_tag(:code, "Course search:") %></h6>
+     	  
+        <%= text_field_tag (:code), "", placeholder: "e.g. 'CS1101S'", class: 'form-control' %>
+        <div class="mt-3"><%= submit_tag "Search", class: 'btn btn-primary' %>
+        <%= link_to "+", "#createCourse", class: "btn btn-primary", "data-toggle" => "modal" %></div>
+     	
+    <% end %>
 </div>
 
 
@@ -24,6 +23,7 @@
       <div class="modal-body">
                 
         <%= form_for Course.new, url: {action: "create"} do |f| %>
+          <%= f.hidden_field :university_id, :value => @university.id, class: 'form-control' %>
           <%= label_tag(:code, "Code:") %>
           <%= f.text_field :code,  class: 'form-control'%>
 

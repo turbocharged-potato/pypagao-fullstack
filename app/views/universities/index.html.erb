@@ -1,0 +1,40 @@
+<div class="dropdown mt-3">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select university
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+  	<% @universities.each do |university| %>
+    	<div class="dropdown-item" ><%=link_to university.name, university_courses_path(university.id), method: :get%></div>
+    <% end %>
+    <div class="dropdown-item" ><%=link_to "Add my university...", "#createUniversity", "data-toggle" => "modal" %></div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="createUniversity" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a new university</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                
+        <%= form_for University.new, url: {action: "create"} do |f| %>
+          <%= label_tag(:name, "University name:") %>
+          <%= f.text_field :name,  class: 'form-control'%>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+          <%= f.submit "Save", class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

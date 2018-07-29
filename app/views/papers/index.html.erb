@@ -2,12 +2,13 @@
 <div>
 	<h2 class="mt-3"><%= @semester.formatted %> Papers </h2>
 <% @semester.papers.each do |paper| %>
-	<%= link_to paper.name, paper_questions_url(paper.id), method: :get, class: 'btn btn-secondary'%>
+	<%= link_to paper.name, paper_questions_url(paper.id), method: :get, class: 'btn btn-secondary mt-1'%>
 <% end %>
 
 
-<%= link_to "+", "#createPapers", class: "btn btn-primary", "data-toggle" => "modal" %>
+<%= link_to "+", "#createPapers", class: "btn btn-primary mt-1", "data-toggle" => "modal" %>
 
+<%= link_to "Back", course_semesters_url(@semester.course.id), class: "btn btn-primary mt-1" %>
 </div>
 
 
