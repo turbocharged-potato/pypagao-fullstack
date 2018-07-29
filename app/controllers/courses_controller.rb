@@ -7,10 +7,8 @@ class CoursesController < ApplicationController
     courses_by_university = Course
                             .select(:id, :university_id, :code)
                             .where(university_id: current_user.university_id)
-    if params[:code]
-      course = courses_by_university.find_by(code: params[:code].upcase)
-      redirection(course)
-    end
+    course = courses_by_university.find_by(code: params[:code].upcase) if params[:code]
+    redirection(course) if params[:code]
   end
 
   def show
@@ -23,12 +21,12 @@ class CoursesController < ApplicationController
 
   def create
     course = Course.new course_params
-    course.code.upcase!
     course.university_id = current_user.university_id
     if course.save
       redirect_to course_semesters_url(course.id), notice: 'New course created'
     else
-      redirect_to courses_url, alert: 'Failed to save course. Course already exists.'
+      redirect_to courses_url, alert: "Failed to save course.
+                                       #{course.errors.full_messages.join(', ')}"
     end
   end
 

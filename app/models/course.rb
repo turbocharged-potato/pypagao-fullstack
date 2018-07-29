@@ -24,4 +24,10 @@ class Course < ApplicationRecord
   belongs_to :university
   has_many :semesters, dependent: :destroy
   validates :code, presence: true, uniqueness: { case_sensitive: false }
+
+  before_save :upcase_code
+
+  def upcase_code
+    code.upcase!
+  end
 end
