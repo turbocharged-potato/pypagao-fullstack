@@ -1,26 +1,45 @@
-</p>
-
-<div class="input-group">
-
-  <%= form_tag("/courses", method: "get") do %>
-      <%= label_tag(:code, "Type in course name:") %>
-      <%= text_field_tag (:code), "e.g. 'CS1101S'", class: 'form-control' %></p>
-      <span class="input-group-btn">
-        <%= submit_tag "Search", class: 'btn btn-primary', disabled: true %>
-      </span>
-      <span class="input-group-btn">
-        <%= submit_tag "+", class: 'btn btn-primary', disabled: true %>
-      </span>
-  <% end %>
-</div>
-
+<%= render 'courses/pickCourse'%>
 <div>
 
+</br>
+
+	<h2 ><%= @course.code %>: <%= @semester.start_year %>/<%= @semester.end_year %> Semester <%= @semester.number %>  </h2>
 </p>
-<b><%= @course.code %></p></b>
-<b>Semester <%= @semester.number %></p></b>
 <% @papers.each do |paper| %>
 	<%= link_to paper.name, paper_questions_url(paper.id), method: :get, class: 'btn btn-primary'%>
 <% end %>
 
+
+<%= link_to "+", "#createPapers", class: "btn btn-primary", "data-toggle" => "modal" %>
+
+</div>
+
+
+</div>
+
+<div class="modal fade" id="createPapers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New paper for <%= @course.code %>  <%= @semester.start_year %>/ <%= @semester.end_year %> Sem <%= @semester.number %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <%= form_for @paper, url: {action: "create"} do |f| %>
+          <%= f.hidden_field :semester_id, :value => @semester.id, class: 'form-control' %>
+          
+          <%= label_tag(:paper, "Paper name:") %>
+          <%= f.text_field :name,  class: 'form-control'%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+          <%= f.submit "Save", class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
