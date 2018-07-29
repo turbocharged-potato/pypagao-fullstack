@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
 
-  def redirect_back_or_to(link, options = {})
-    redirect_to(request.referer || link, options)
+  def redirect_back_or_to(link, alert: nil, notice: nil)
+    redirect_to(request.referer || link, notice: notice, alert: alert)
   end
 
   protected

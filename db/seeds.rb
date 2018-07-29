@@ -44,8 +44,8 @@ answer1 = Answer.create(content: 'make_fact',
                         user: tiffany)
 _answer2 = Answer.create(content: 'make_fact(make_fact)'\
                                   ' // This answer is so obvious anyone should have '\
-                                  'been able to see it. Doloroajd nodzsfnoadnfboiajf boiajfobijawoifj'\
-                                  'ar,jvn,nkaejrvajknreva rvkajrbv akjvb aekrhjvb aekjrhbv akehrv aerjkhv',
+                                  'been able to see it. Doloroajd nodzsfnoadnfboiajf boiajfobijaw'\
+                                  'jvn, ajknreva rvkajrbv akjvb aekrhjvb aekjrhbv akehrv aerjkhv',
                          imgur: 'www.google.com',
                          question: question1,
                          user: julius)
