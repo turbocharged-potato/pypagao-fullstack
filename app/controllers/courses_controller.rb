@@ -23,6 +23,7 @@ class CoursesController < ApplicationController
 
   def create
     course = Course.new course_params
+    course.code.upcase!
     course.university_id = current_user.university_id
     if course.save
       redirect_to course_semesters_url(course.id), notice: 'New course created'
