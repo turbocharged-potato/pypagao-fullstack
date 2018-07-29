@@ -1,4 +1,4 @@
-<%= link_to 'Back to paper', paper_questions_path(@question.paper.id) %>
+<%= link_to 'Back to paper', paper_questions_path(@question.paper.id), class: 'btn btn-sm btn-primary mt-1' %>
 <h2>Question</h2>
 <%= render "shared/question", question: @question %>
 <h2>
