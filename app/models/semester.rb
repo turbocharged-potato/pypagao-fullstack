@@ -23,6 +23,8 @@
 #
 
 class Semester < ApplicationRecord
+  default_scope { order(start_year: :desc, number: :desc) }
+
   belongs_to :course
   has_many :papers, dependent: :destroy
 

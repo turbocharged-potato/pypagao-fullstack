@@ -5,9 +5,6 @@ class SemestersController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @semester = Semester.new
-    @semesters = @course.semesters
-                        .sort { |a, b| b[:number] <=> a[:number] }
-                        .sort { |a, b| b[:start_year] <=> a[:start_year] }
   end
 
   def create
