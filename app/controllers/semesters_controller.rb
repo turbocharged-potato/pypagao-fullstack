@@ -3,14 +3,11 @@
 class SemestersController < ApplicationController
   # /courses/1/semester - lists semester
   def index
-    return unless ensure_params_fields([:course_id])
     @course = Course.find_by(id: params[:course_id])
     @semester = Semester.new
     @semesters = @course.semesters
-                        .sort_by { |semester| semester[:number] }
-                        .reverse
-                        .sort_by { |semester| semester[:start_year] }
-                        .reverse
+                        .sort { |a, b| b[:number] <=> a[:number] }
+                        .sort { |a, b| b[:start_year] <=> a[:start_year] }
   end
 
   def create
