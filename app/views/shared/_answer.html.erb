@@ -1,0 +1,61 @@
+<div class="card my-2">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-1">
+        <div class="row justify-content-center">
+          <%= link_to icon('fas', 'chevron-up'), answer_votes_up_path(answer.id), method: 'POST', class: answer.score_of(current_user) == 1 ? 'selected' : 'not-selected' %>
+        </div>
+        <div class="row justify-content-center"><%= answer.score %></div>
+        <div class="row justify-content-center">
+          <%= link_to icon('fas', 'chevron-down'), answer_votes_down_path(answer.id), method: 'POST', class: answer.score_of(current_user) == -1 ? 'selected' : 'not-selected' %>
+        </div>
+      </div>
+      <div class="col-11">
+        <div class="row">
+          <div class="col-12">
+            <%= simple_format(answer.content) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <div>
+      <footer class="blockquote-footer"><%= answer.user.name %></footer>
+    </div>
+    <% if answer.user.id == current_user.id %>
+      <div>
+        <%= link_to icon('fas', 'pencil-alt'), "#editAnswer#{answer.id}", 'data-toggle' => 'modal', class: 'btn btn-sm btn-secondary' %>
+        <%= link_to icon('fas', 'trash-alt'), answer_path(id: answer.id), method: :delete, 'data-confirm' => 'Are you sure?', class: 'btn btn-sm btn-danger' %>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to "#{answer.comments.size} comments", answer_comments_path(answer.id) %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editAnswer<%= answer.id %>" tabindex="-1" role="dialog" aria-labelledby="editAnswerModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editAnswer<%= answer.id %>ModalLabel">Edit Answer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for(answer, url: answer_path(answer.id), method: :patch) do |a| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= a.label :content %>
+            <%= a.text_area :content, autofocus: true, class: 'form-control', rows: 3 %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= a.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

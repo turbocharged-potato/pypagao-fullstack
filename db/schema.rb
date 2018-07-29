@@ -51,16 +51,17 @@ ActiveRecord::Schema.define(version: 2018_07_28_090407) do
     t.bigint "semester_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_papers_on_name", unique: true
+    t.index ["name", "semester_id"], name: "index_papers_on_name_and_semester_id", unique: true
     t.index ["semester_id"], name: "index_papers_on_semester_id"
   end
 
   create_table "questions", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "number", null: false
     t.bigint "paper_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_questions_on_name", unique: true
+    t.index ["number"], name: "index_questions_on_number", unique: true
     t.index ["paper_id"], name: "index_questions_on_paper_id"
   end
 
@@ -72,7 +73,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_090407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_semesters_on_course_id"
-    t.index ["start_year", "end_year", "number"], name: "index_semesters_on_start_year_and_end_year_and_number", unique: true
+    t.index ["start_year", "end_year", "number", "course_id"], name: "unique_constraint_thingy", unique: true
   end
 
   create_table "universities", force: :cascade do |t|
@@ -105,9 +106,10 @@ ActiveRecord::Schema.define(version: 2018_07_28_090407) do
   create_table "votes", force: :cascade do |t|
     t.bigint "answer_id", null: false
     t.bigint "user_id", null: false
-    t.integer "score", null: false
+    t.integer "score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["answer_id", "user_id"], name: "index_votes_on_answer_id_and_user_id", unique: true
     t.index ["answer_id"], name: "index_votes_on_answer_id"
     t.index ["score"], name: "index_votes_on_score", using: :hash
     t.index ["user_id"], name: "index_votes_on_user_id"

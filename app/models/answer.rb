@@ -24,10 +24,23 @@
 #
 
 class Answer < ApplicationRecord
+  default_scope { eager_load(:upvotes, :downvotes, :comments, :user) }
+
   belongs_to :question
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
 
+  has_many :upvotes, -> { where score: 1 }, class_name: 'Vote', inverse_of: :answer
+  has_many :downvotes, -> { where score: -1 }, class_name: 'Vote', inverse_of: :answer
+
   validates :content, presence: true
+
+  def score
+    upvotes.size - downvotes.size
+  end
+
+  def score_of(user)
+    Vote.find_by(answer_id: id, user_id: user.id)&.score || 0
+  end
 end

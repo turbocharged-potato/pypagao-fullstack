@@ -14,8 +14,8 @@
 #
 # Indexes
 #
-#  index_semesters_on_course_id                           (course_id)
-#  index_semesters_on_start_year_and_end_year_and_number  (start_year,end_year,number) UNIQUE
+#  index_semesters_on_course_id  (course_id)
+#  unique_constraint_thingy      (start_year,end_year,number,course_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -51,5 +51,12 @@ RSpec.describe Semester, type: :model do
 
   it 'has a valid factory' do
     expect(build(:semester)).to be_valid
+  end
+
+  describe '#formatted' do
+    it 'formats correctly ' do
+      semester = build(:semester, start_year: 2018, end_year: 2019, number: 1)
+      expect(semester.formatted).to eq('2018/2019 Semester 1')
+    end
   end
 end

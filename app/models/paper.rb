@@ -12,8 +12,8 @@
 #
 # Indexes
 #
-#  index_papers_on_name         (name) UNIQUE
-#  index_papers_on_semester_id  (semester_id)
+#  index_papers_on_name_and_semester_id  (name,semester_id) UNIQUE
+#  index_papers_on_semester_id           (semester_id)
 #
 # Foreign Keys
 #

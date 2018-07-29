@@ -30,6 +30,7 @@ Metrics/BlockLength:
     - 'app/models/concerns/*'
     - 'app/controllers/concerns/*'
     - 'config/routes.rb'
+    - 'config/environments/development.rb'
 
 Metrics/ClassLength:
   Exclude:

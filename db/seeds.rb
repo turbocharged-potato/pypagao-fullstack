@@ -35,9 +35,18 @@ semester = Semester.create(start_year: 2017,
                            number: 1,
                            course: cs1101s)
 paper = Paper.create(name: 'Finals', semester: semester)
-question = Question.create(name: 'Essence of Recursion', paper: paper)
-answer = Answer.create(content: 'make_fact',
-                       imgur: 'www.google.com',
-                       question: question,
-                       user: tiffany)
-Comment.create(content: 'y combinator', answer: answer, user: julius)
+question1 = Question.create(name: 'Essence of Recursion', number: 1, paper: paper)
+_question2 = Question.create(name: 'Vim vs emacs', number: 2, paper: paper)
+
+answer1 = Answer.create(content: 'make_fact',
+                        imgur: 'www.google.com',
+                        question: question1,
+                        user: tiffany)
+_answer2 = Answer.create(content: 'make_fact(make_fact)'\
+                                  ' // This answer is so obvious anyone should have '\
+                                  'been able to see it. Doloroajd nodzsfnoadnfboiajf boiajfobijaw'\
+                                  'jvn, ajknreva rvkajrbv akjvb aekrhjvb aekjrhbv akehrv aerjkhv',
+                         imgur: 'www.google.com',
+                         question: question1,
+                         user: julius)
+Comment.create(content: 'y combinator', answer: answer1, user: julius)
