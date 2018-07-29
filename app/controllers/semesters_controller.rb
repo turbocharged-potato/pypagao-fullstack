@@ -4,6 +4,7 @@ class SemestersController < ApplicationController
   # /courses/1/semester - lists semester
   def index
     @course = Course.find(params[:course_id])
+    @university = @course.university
     @semester = Semester.new
   end
 

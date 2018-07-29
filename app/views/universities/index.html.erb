@@ -1,0 +1,12 @@
+<div class="dropdown mt-3">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select university
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+  	<% @universities.each do |university| %>
+    	<div class="dropdown-item" ><%=link_to university.name, university_courses_path(university.id), method: :get%></div>
+    <% end %>
+  </div>
+</div>
+
