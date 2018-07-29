@@ -7,6 +7,6 @@ class CreatePapers < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :papers, :name, unique: true
+    add_index :papers, [:name, :semester_id], unique: true
   end
 end

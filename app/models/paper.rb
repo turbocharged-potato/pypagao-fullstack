@@ -24,5 +24,5 @@ class Paper < ApplicationRecord
   belongs_to :semester
   has_many :questions, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: [:semester_id] }
 end

@@ -1,0 +1,6 @@
+<h1 class="mt-3">Top Contributors</h1>
+
+<% @users.each do |user| %>
+	<%= link_to user.name, user_path(user.id), method: :get %>
+	<%= user.university.name %>
+<% end %>

@@ -1,0 +1,45 @@
+<h2 class="mt-3"><%= @course.code %> Semesters</h2>
+<% @semesters.each do |semester| %>
+	<%= link_to semester.formatted, semester_papers_path(semester.id), method: :get, class: 'btn btn-secondary mt-1' %>
+<% end %>
+
+<%= link_to "+", "#createSem", class: "btn btn-primary mt-1", "data-toggle" => "modal" %>
+
+</div>
+
+<div class="modal fade" id="createSem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create a new semester under <%= @course.code %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <%= form_for @semester, url: {action: "create"} do |f| %>
+          <%= f.hidden_field :course_id, :value => @course.id, class: 'form-control' %>
+          <div class="row">
+            <div class="col">
+              <%= label_tag(:semester, "Start year:") %>
+              <%= f.number_field :start_year, class: 'form-control'%>
+            </div>
+            <div class="col">
+              <%= label_tag(:semester, "End year:") %>
+              <%= f.number_field :end_year,  class: 'form-control'%>
+            </div>
+          </div>
+         
+          <%= label_tag(:semester, "Semester number:") %>
+          <%= f.number_field :number,  class: 'form-control'%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+          <%= f.submit "Save", class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
