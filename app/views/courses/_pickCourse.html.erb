@@ -1,0 +1,16 @@
+</p>
+
+<div class="input-group">
+
+  <%= form_tag("/courses", method: "get") do %>
+      <%= label_tag(:code, "Type in course name:") %>
+      <%= text_field_tag (:code), "", placeholder: "e.g. 'CS1101S'", class: 'form-control' %></p>
+      <span class="input-group-btn">
+        <%= submit_tag "Search", class: 'btn btn-primary' %>
+      </span>
+
+      <%= link_to "+", "#createCourse", class: "btn btn-primary", "data-toggle" => "modal" %>
+      
+  <% end %>
+
+</div>

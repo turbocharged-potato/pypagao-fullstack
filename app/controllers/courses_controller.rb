@@ -3,14 +3,13 @@
 class CoursesController < ApplicationController
   # /courses - lists all course objects
   def index
+    @course = Course.new
     courses_by_university = Course
                             .select(:id, :university_id, :code)
                             .where(university_id: current_user.university_id)
     if params[:code]
       course = courses_by_university.find_by(code: params[:code].upcase)
-      redirect_to course_semesters_url course_id: course.id if course
-    else
-      @courses = courses_by_university
+      redirection(course)
     end
   end
 
@@ -23,17 +22,24 @@ class CoursesController < ApplicationController
   end
 
   def create
-    return unless ensure_params_fields([:code])
     course = Course.new course_params
     course.university_id = current_user.university_id
     if course.save
-      @course = course.slice(:id, :code)
+      redirect_to course_semesters_url(course.id), notice: 'New course created'
     else
-      render_error(course.errors.full_messages.join(', '), :bad_request)
+      redirect_to courses_url, alert: 'Failed to save course. Course already exists.'
     end
   end
 
   private
+
+  def redirection(course)
+    if course
+      redirect_to course_semesters_url(course.id)
+    else
+      redirect_to courses_path, alert: 'Course not found. Maybe create a new course?'
+    end
+  end
 
   def course_params
     params.require(:course).permit(:code)
