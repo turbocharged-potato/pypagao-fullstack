@@ -1,3 +1,10 @@
 <h1 class="mt-3"><%=@user.name%></h1>
 <h5 class="mt-3"><%=@user.university.name%></h5>
-<h3 class="mt-3">Top Answers</h3>
+<h5 class="mt-3"><%= "Karma: #{@user.karma_formatted}" %></h5>
+
+<h3 class="mt-3">Recent Answers</h3>
+
+
+<% @answers.each do |answer| %>
+	<%= render "shared/answer", answer: answer %>
+<% end %>

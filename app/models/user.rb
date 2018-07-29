@@ -36,6 +36,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  has_many :answers, dependent: :destroy
   belongs_to :university, optional: true
+
+  def karma
+    upvotes = Vote.joins(answer: :user).where(score: 1, answers: { users: { id: id } }).size
+    downvotes = Vote.joins(answer: :user).where(score: -1, answers: { users: { id: id } }).size
+    upvotes - downvotes
+  end
+
+  def karma_formatted
+    karma.positive? ? "+#{karma}" : karma.to_s
+  end
 end

@@ -1,6 +1,21 @@
 <h1 class="mt-3">Top Contributors</h1>
-
-<% @users.each do |user| %>
-	<%= link_to user.name, user_path(user.id), method: :get %>
-	<%= user.university.name %>
-<% end %>
+<table class="table mt-4">
+</thead>
+	<tr>
+		<th scope="col">#</th>
+		<th scope="col">Name</th>
+		<th scope="col">University</th>
+		<th scope="col"># of votes</th>
+	</tr>
+</thead>
+<tbody>
+	<% @users.each_with_index do |user, index| %>
+	<tr>
+		<td><%= index + 1 %></td>
+		<td><%= link_to user.name, user_path(user.id), method: :get %></td>
+		<td><%= user.university.name %></td>
+		<td><%= user.karma %></td>
+	<% end %>
+	</tr>
+</tbody>
+</table>
