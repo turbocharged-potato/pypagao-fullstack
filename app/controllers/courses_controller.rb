@@ -10,15 +10,7 @@ class CoursesController < ApplicationController
     course = courses_by_university.find_by(code: params[:code].upcase) if params[:code]
     redirection(course) if params[:code]
   end
-
-  def show
-    courses_by_university = Course
-                            .select(:id, :university_id, :code)
-                            .where(university_id: current_user.university_id)
-
-    @course = courses_by_university.find_by(id: params[:id])
-  end
-
+  
   def create
     course = Course.new course_params
     course.university_id = current_user.university_id
