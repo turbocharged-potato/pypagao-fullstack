@@ -6,5 +6,6 @@ class QuestionsController < ApplicationController
                                      paper: { semester: :course })
                          .where(paper_id: params[:paper_id])
     @question = Question.new
+    @paper = Paper.find(params[:paper_id])
   end
 end

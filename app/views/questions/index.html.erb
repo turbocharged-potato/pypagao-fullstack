@@ -1,6 +1,6 @@
-<%= link_to 'Back to semesters', semester_papers_path(@questions.first.paper.id), class: 'btn btn-sm btn-primary mt-1' %>
+<%= link_to 'Back to semesters', semester_papers_path(@paper.id), class: 'btn btn-sm btn-primary mt-1' %>
 <h2>
-  <%= @questions.first.paper.formatted %>
+  <%= @paper.formatted %>
 </h2>
 
 <% @questions.each do |question| %>
@@ -13,7 +13,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newQuestionModalLabel">New Question for <%= @questions.first.paper.formatted %></h5>
+        <h5 class="modal-title" id="newQuestionModalLabel">New Question for <%= @paper.formatted %></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
