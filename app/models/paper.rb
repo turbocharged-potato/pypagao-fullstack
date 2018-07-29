@@ -25,4 +25,8 @@ class Paper < ApplicationRecord
   has_many :questions, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: [:semester_id] }
+
+  def formatted
+    "#{semester.course.code} #{semester.formatted} #{name}"
+  end
 end
