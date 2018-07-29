@@ -2,12 +2,15 @@
 <h2>
   <%= @paper.formatted %>
 </h2>
+<h3>
+  Questions
+  <%= link_to icon('fas', 'plus'), '#newQuestion', class: 'btn btn-primary', 'data-toggle' => 'modal' %>
+</h3>
 
 <% @questions.each do |question| %>
   <%= render "shared/question", question: question, question_view: true %>
 <% end %>
 
-<%= link_to icon('fas', 'plus'), '#newQuestion', class: 'btn btn-primary', 'data-toggle' => 'modal' %>
 
 <div class="modal fade" id="newQuestion" tabindex="-1" role="dialog" aria-labelledby="newQuestionModal" aria-hidden="true">
   <div class="modal-dialog" role="document">

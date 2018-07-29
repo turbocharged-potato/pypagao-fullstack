@@ -13,8 +13,8 @@
 #
 # Indexes
 #
-#  index_questions_on_number    (number) UNIQUE
-#  index_questions_on_paper_id  (paper_id)
+#  index_questions_on_number_and_paper_id  (number,paper_id) UNIQUE
+#  index_questions_on_paper_id             (paper_id)
 #
 # Foreign Keys
 #
@@ -26,5 +26,6 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   validates :name, presence: true
-  validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
+  validates :number, presence: true, uniqueness: { scope: :paper_id },
+                     numericality: { greater_than: 0 }
 end

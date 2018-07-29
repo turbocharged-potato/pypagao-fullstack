@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_28_090407) do
+ActiveRecord::Schema.define(version: 2018_07_29_171712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2018_07_28_090407) do
     t.bigint "paper_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["number"], name: "index_questions_on_number", unique: true
+    t.index ["number", "paper_id"], name: "index_questions_on_number_and_paper_id", unique: true
     t.index ["paper_id"], name: "index_questions_on_paper_id"
   end
 

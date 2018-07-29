@@ -13,8 +13,8 @@
 #
 # Indexes
 #
-#  index_questions_on_number    (number) UNIQUE
-#  index_questions_on_paper_id  (paper_id)
+#  index_questions_on_number_and_paper_id  (number,paper_id) UNIQUE
+#  index_questions_on_paper_id             (paper_id)
 #
 # Foreign Keys
 #
