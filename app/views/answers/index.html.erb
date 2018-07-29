@@ -1,8 +1,6 @@
 <h2>Question</h2>
 <div class="card">
-  <div class="card-header">
-    <%= "#{@question.paper.semester.course.code} #{@question.paper.semester.formatted} #{@question.paper.name}" %>
-  </div>
+  <div class="card-header"><%= "#{@question.paper.semester.course.code} #{@question.paper.semester.formatted} #{@question.paper.name}" %></div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">
       <p><%= @question.name %></p>
@@ -10,7 +8,38 @@
     </blockquote>
   </div>
 </div>
-<h2>Answers</h2>
+<h2>
+  Answers
+  <%= link_to icon('fas', 'plus'), '#newAnswer', class: 'btn btn-primary', 'data-toggle' => 'modal' %>
+</h2>
+
+
 <% @answers.each do |answer| %>
   <%= render "shared/answer", answer: answer, current_user: @current_user %>
 <% end %>
+
+
+<div class="modal fade" id="newAnswer" tabindex="-1" role="dialog" aria-labelledby="newAnswerModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newAnswerModalLabel">New Answer for Question <%= @question.number %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for(@answer, url: { action: 'create' }) do |a| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= a.label :content %>
+            <%= a.text_area :content, autofocus: true, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= a.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -24,7 +24,7 @@
 #
 
 class Answer < ApplicationRecord
-  default_scope { eager_load(:upvotes, :downvotes) }
+  default_scope { eager_load(:upvotes, :downvotes, :comments, :user) }
 
   belongs_to :question
   belongs_to :user

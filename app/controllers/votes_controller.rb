@@ -7,7 +7,7 @@ class VotesController < ApplicationController
       vote.score = vote.score + 1
       vote.save
     end
-    redirect_to request.referer || answers_path(params[:answer_id])
+    redirect_back_or_to question_answers_path(params[:answer_id])
   end
 
   def down
@@ -16,6 +16,6 @@ class VotesController < ApplicationController
       vote.score = vote.score - 1
       vote.save
     end
-    redirect_to request.referer || answers_path(params[:answer_id])
+    redirect_back_or_to question_answers_path(params[:answer_id])
   end
 end
