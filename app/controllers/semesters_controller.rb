@@ -23,7 +23,7 @@ class SemestersController < ApplicationController
 
   def semester_params
     params.require(:semester)
-          .permit(:start_year,:end_year, :number, :course_id)
+          .permit(:start_year, :end_year, :number, :course_id)
           .merge(course_id: params[:course_id])
   end
 end
