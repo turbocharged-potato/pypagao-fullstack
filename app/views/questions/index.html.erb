@@ -1,4 +1,4 @@
-<%= link_to 'Back to semesters', semester_papers_path(@questions.first.paper.id) %>
+<%= link_to 'Back to semesters', semester_papers_path(@questions.first.paper.id), class: 'btn btn-sm btn-primary mt-1' %>
 <h2>
   <%= @questions.first.paper.formatted %>
 </h2>

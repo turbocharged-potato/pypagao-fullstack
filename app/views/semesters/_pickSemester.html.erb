@@ -17,30 +17,27 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        
-        <%= form_for @semester, url: {action: "create"} do |f| %>
-          <%= f.hidden_field :course_id, :value => @course.id, class: 'form-control' %>
-          <div class="row">
-            <div class="col">
-              <%= label_tag(:semester, "Start year:") %>
-              <%= f.number_field :start_year, class: 'form-control'%>
+
+      <%= form_for @semester, url: {action: "create"} do |f| %>
+        <div class="modal-body">
+          <%= f.label :start_year, "Semester" %>
+          <div class="input-group">
+            <%= f.number_field :start_year, class: 'form-control', placeholder: '2017', min: 0 %>
+            <div class="input-group-prepend input-group-append">
+              <span class="input-group-text">/<span>
             </div>
-            <div class="col">
-              <%= label_tag(:semester, "End year:") %>
-              <%= f.number_field :end_year,  class: 'form-control'%>
+            <%= f.number_field :end_year, class: 'form-control', placeholder: '2018', min: 0 %>
+            <div class="input-group-prepend input-group-append">
+              <span class="input-group-text">Semester<span>
             </div>
+            <%= f.number_field :number,  class: 'form-control', placeholder: '1', min: 1, max: 2 %>
           </div>
-         
-          <%= label_tag(:semester, "Semester number:") %>
-          <%= f.number_field :number,  class: 'form-control'%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <%= f.submit "Save", class: "btn btn-primary"%>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
