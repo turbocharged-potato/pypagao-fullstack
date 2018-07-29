@@ -1,6 +1,6 @@
 <h2 class="mt-3"><%= @course.code %> Semesters</h2>
 <% @course.semesters.each do |semester| %>
-	<%= link_to semester.formatted, semester_papers_path(semester.id), method: :get, class: 'btn btn-secondary mt-1' %>
+	<%= link_to semester.short_formatted, semester_papers_path(semester.id), method: :get, class: 'btn btn-secondary mt-1' %>
 <% end %>
 
 <%= link_to "+", "#createSem", class: "btn btn-primary mt-1", "data-toggle" => "modal" %>

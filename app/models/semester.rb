@@ -40,6 +40,10 @@ class Semester < ApplicationRecord
   end
 
   def formatted
-    "#{course.code} #{start_year}/#{end_year} Semester #{number}"
+    "#{course.code} #{short_formatted}"
+  end
+
+  def short_formatted
+    "#{start_year}/#{end_year} Semester #{number}"
   end
 end
