@@ -16,13 +16,9 @@ class ApplicationController < ActionController::Base
       params[field].present? && acc
     end
     unless all_present
-      render_error('Missing parameter', :unprocessable_entity)
+      alert('Lacking a param')
       return
     end
     true
-  end
-
-  def render_error(message)
-    @message = message
   end
 end
