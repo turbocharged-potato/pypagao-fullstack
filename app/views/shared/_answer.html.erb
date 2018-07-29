@@ -27,12 +27,12 @@
           <%= answer.created_at %>
         </div>
       </div>
-      <div class="col-4 text-right">
+      <div class="col-4 text-center">
         <%= link_to "#{answer.comments.size}&nbsp;comments".html_safe, answer_comments_path(answer.id) %>
       </div>
       <div class="col-4">
         <% if answer.user.id == current_user.id %>
-          <div class="row justify-content-center">
+          <div class="row justify-content-end">
             <%= link_to icon('fas', 'pencil-alt'), "#editAnswer#{answer.id}", 'data-toggle' => 'modal', class: 'btn btn-sm btn-secondary' %>
             <%= link_to icon('fas', 'trash-alt'), answer_path(id: answer.id), method: :delete, 'data-confirm' => 'Are you sure?', class: 'btn btn-sm btn-danger' %>
           </div>
