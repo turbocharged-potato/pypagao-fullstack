@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources :users, only: %i[show index]
   resources :universities, only: %i[index create] do
     resources :courses, shallow: true, only: %i[index create] do
-      resources :semesters, shallow: true, only: %i[index new create] do
-        resources :papers, shallow: true, only: %i[index new create] do
-          resources :questions, shallow: true, only: %i[index new create] do
+      resources :semesters, shallow: true, only: %i[index create] do
+        resources :papers, shallow: true, only: %i[index create] do
+          resources :questions, shallow: true, only: %i[index create] do
             resources :answers, shallow: true, only: %i[index create update destroy] do
               post '/votes/up', to: 'votes#up'
               post '/votes/down', to: 'votes#down'
