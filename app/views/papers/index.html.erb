@@ -1,6 +1,6 @@
 <%= render 'courses/pickCourse'%>
 <div>
-	<h2 class="mt-3"><%= @semester.course.code %> <%= @semester.start_year %>/<%= @semester.end_year %> Sem <%= @semester.number %> Papers </h2>
+	<h2 class="mt-3"><%= @semester.formatted %> Papers </h2>
 <% @semester.papers.each do |paper| %>
 	<%= link_to paper.name, paper_questions_url(paper.id), method: :get, class: 'btn btn-secondary'%>
 <% end %>

@@ -36,4 +36,8 @@ class Semester < ApplicationRecord
     errors.add(:end_year, 'must be right after start year') unless
       end_year && start_year && end_year - start_year == 1
   end
+
+  def formatted
+    "#{start_year}/#{end_year} Semester #{number}"
+  end
 end
