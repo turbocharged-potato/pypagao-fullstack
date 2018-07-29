@@ -1,9 +1,9 @@
 <%= render 'courses/pickCourse'%>
 <div>
 
-</br>
+</p>
 
-	<h2 ><%= @course.code %>: <%= @semester.start_year %>/<%= @semester.end_year %> Semester <%= @semester.number %>  </h2>
+	<h2 ><%= @course.code %> <%= @semester.start_year %>/<%= @semester.end_year %> Sem <%= @semester.number %> Papers </h2>
 </p>
 <% @papers.each do |paper| %>
 	<%= link_to paper.name, paper_questions_url(paper.id), method: :get, class: 'btn btn-primary'%>

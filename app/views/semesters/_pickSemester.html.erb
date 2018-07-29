@@ -1,5 +1,5 @@
 </p>
-<h2><%= @course.code %></p></h2>
+<h2><%= @course.code %> Semesters</p></h2>
 <% @semesters.each do |semester| %>
 	<%= link_to "#{semester.start_year}/#{semester.end_year} Sem #{semester.number}" , semester_papers_path(semester.id), method: :get, class: 'btn btn-primary' %>
 <% end %>
