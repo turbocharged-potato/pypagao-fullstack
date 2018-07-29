@@ -27,7 +27,8 @@ class Semester < ApplicationRecord
   has_many :papers, dependent: :destroy
 
   validates :number, presence: true, inclusion: { in: [1, 2] }
-  validates :start_year, presence: true, numericality: { greater_than: 0 }
+  validates :start_year, presence: true, numericality: { greater_than: 0 },
+                         uniqueness: { scope: %i[end_year number course_id] }
   validates :end_year, presence: true, numericality: { greater_than: 0 }
   validate :start_year_right_before_end_year
 
