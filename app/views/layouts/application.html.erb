@@ -33,6 +33,7 @@
               <%= "#{current_user.name} (#{current_user.karma_formatted})" %>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              <%= link_to 'My Profile', user_path(current_user.id), class: 'dropdown-item' %>
               <%= link_to 'Edit information', edit_user_registration_path, class: 'dropdown-item' %>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
             </div>
