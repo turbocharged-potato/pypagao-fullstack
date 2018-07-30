@@ -32,4 +32,10 @@ RSpec.describe Paper, type: :model do
   it 'has a valid factory' do
     expect(build(:paper)).to be_valid
   end
+
+  it '#formatted' do
+    semester = create(:semester)
+    paper = create(:paper, semester: semester, name: 'Finals')
+    expect(paper.formatted).to eq("#{semester.formatted} Finals")
+  end
 end

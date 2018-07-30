@@ -14,7 +14,7 @@ class SemestersController < ApplicationController
       redirect_to course_semesters_url(semester.course.id),
                   notice: "New semester created under #{semester.course.code}"
     else
-      redirect_to course_semesters_url(semester.course.id),
+      redirect_to course_semesters_url(params[:course_id]),
                   alert: "Failed to create semester. #{semester.errors.full_messages.join(', ')}"
     end
   end

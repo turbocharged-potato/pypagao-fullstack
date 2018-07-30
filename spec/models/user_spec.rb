@@ -39,4 +39,39 @@ RSpec.describe User, type: :model do
   it 'should have a valid factory' do
     expect(build(:user)).to be_valid
   end
+
+  it '#karma' do
+    user = create(:user)
+    answers = create_list(:answer, 5, user: user)
+    votes = answers.map { |answer| create(:vote, answer: answer, score: [-1, 0, 1].sample) }
+    karma = votes.reduce(0) { |acc, elem| acc + elem.score }
+
+    expect(user.karma).to eq(karma)
+  end
+
+  describe '#karma_formatted' do
+    it 'works for positive' do
+      user = create(:user)
+      answers = create_list(:answer, 5, user: user)
+      _votes = answers.map { |answer| create(:vote, answer: answer, score: 1) }
+
+      expect(user.karma_formatted).to eq('+5')
+    end
+
+    it 'works for negative' do
+      user = create(:user)
+      answers = create_list(:answer, 5, user: user)
+      _votes = answers.map { |answer| create(:vote, answer: answer, score: -1) }
+
+      expect(user.karma_formatted).to eq('-5')
+    end
+
+    it 'works for 0' do
+      user = create(:user)
+      answers = create_list(:answer, 5, user: user)
+      _votes = answers.map { |answer| create(:vote, answer: answer, score: 0) }
+
+      expect(user.karma_formatted).to eq('0')
+    end
+  end
 end
