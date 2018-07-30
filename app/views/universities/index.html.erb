@@ -5,9 +5,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
   	<% @universities.each do |university| %>
-    	<div class="dropdown-item" ><%=link_to university.name, university_courses_path(university.id), method: :get%></div>
+      <%=link_to university.name, university_courses_path(university.id), method: :get, class: 'dropdown-item' %>
     <% end %>
-    <div class="dropdown-item" ><%=link_to "Add my university...", "#createUniversity", "data-toggle" => "modal" %></div>
+    <%=link_to "Add my university...", "#createUniversity", "data-toggle" => "modal", class: 'dropdown-item' %>
   </div>
 </div>
 
