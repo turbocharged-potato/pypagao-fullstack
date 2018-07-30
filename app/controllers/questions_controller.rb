@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
     @questions = Question.eager_load(answers: %i[user upvotes downvotes comments],
                                      paper: { semester: :course })
                          .where(paper_id: params[:paper_id])
+                         .order(number: :asc)
     @question = Question.new
     @paper = Paper.find(params[:paper_id])
   end
