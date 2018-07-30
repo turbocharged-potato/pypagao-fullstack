@@ -11,10 +11,10 @@ class PapersController < ApplicationController
   def create
     paper = Paper.new paper_params
     if paper.save
-      redirect_to semester_papers_url(paper.semester.id),
+      redirect_to semester_papers_url(params[:semester_id]),
                   notice: new_paper_notice(paper)
     else
-      redirect_to semester_papers_url(paper.semester.id),
+      redirect_to semester_papers_url(params[:semester_id]),
                   alert: "Failed to create paper. #{paper.errors.full_messages.join(', ')}"
     end
   end
@@ -28,6 +28,6 @@ class PapersController < ApplicationController
   end
 
   def paper_params
-    params.require(:paper).permit(:name, :semester_id)
+    params.require(:paper).permit(:name, :semester_id).merge(semester_id: params[:semester_id])
   end
 end

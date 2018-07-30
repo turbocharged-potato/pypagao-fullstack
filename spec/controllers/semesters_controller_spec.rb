@@ -30,8 +30,8 @@ RSpec.describe SemestersController, type: :controller do
       sign_in create(:user)
       course = create(:course)
       semester = build(:semester, course: course)
-      allow(Semester).to receive(:new).and_return(course)
-      allow(course).to receive(:save).and_return(false)
+      allow(Semester).to receive(:new).and_return(semester)
+      allow(semester).to receive(:save).and_return(false)
       post :create, params: { course_id: course.id, semester: { start_year: semester.start_year,
                                                                 end_year: semester.end_year,
                                                                 number: semester.number } }

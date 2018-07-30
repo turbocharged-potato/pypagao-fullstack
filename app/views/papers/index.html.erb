@@ -26,8 +26,6 @@
       <div class="modal-body">
         
         <%= form_for @paper, url: {action: "create"} do |f| %>
-          <%= f.hidden_field :semester_id, :value => @semester.id, class: 'form-control' %>
-          
           <%= label_tag(:paper, "Paper name:") %>
           <%= f.text_field :name,  class: 'form-control'%>
       </div>

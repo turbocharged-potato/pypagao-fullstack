@@ -23,24 +23,34 @@ class AnswersController < ApplicationController
 
   def update
     answer = Answer.find(params[:id])
+    return unless ensure_authorised(answer)
     question_id = answer.question.id
-    if answer.update answer_params
+    if answer.update(answer_params)
       redirect_back_or_to question_answers_path(question_id),
                           notice: 'Answer successfully updated'
     else
       redirect_back_or_to question_answers_path(question_id),
-                          notice: 'Failed to update answer: ' +
-                                  answer.errors.full_messages.join(', ')
+                          alert: 'Failed to update answer:' + answer.errors.full_messages.join(', ')
     end
   end
 
   def destroy
     answer = Answer.find(params[:id])
+    return unless ensure_authorised(answer)
     question_id = answer.question.id
     redirect_back_or_to question_answers_path(question_id) if answer.destroy
   end
 
   private
+
+  def ensure_authorised(answer)
+    if answer.user.id != current_user.id
+      redirect_back_or_to question_answers_path(answer.question.id),
+                          alert: 'Unauthorised to edit/delete answer'
+      return false
+    end
+    true
+  end
 
   def create_answer_params
     answer_params.merge(user_id: current_user.id, question_id: params[:question_id])

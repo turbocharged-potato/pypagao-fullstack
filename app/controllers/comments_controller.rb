@@ -23,10 +23,10 @@ class CommentsController < ApplicationController
 
   def update
     comment = Comment.find(params[:id])
+    return unless ensure_authorised(comment)
     answer_id = comment.answer.id
     if comment.update comment_params
-      redirect_back_or_to answer_comments_path(answer_id),
-                          notice: 'Comment successfully updated'
+      redirect_back_or_to answer_comments_path(answer_id), notice: 'Comment successfully updated'
     else
       redirect_back_or_to answer_comments_path(answer_id),
                           alert: 'Failed to update comment: ' +
@@ -36,11 +36,21 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    return unless ensure_authorised(comment)
     answer_id = comment.answer.id
     redirect_back_or_to answer_comments_path(answer_id) if comment.destroy
   end
 
   private
+
+  def ensure_authorised(comment)
+    if comment.user.id != current_user.id
+      redirect_back_or_to answer_comments_path(comment.answer.id),
+                          alert: 'Unauthorised to edit/delete comment'
+      return false
+    end
+    true
+  end
 
   def create_comment_params
     comment_params.merge(user_id: current_user.id, answer_id: params[:answer_id])
