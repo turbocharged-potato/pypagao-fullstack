@@ -34,7 +34,7 @@ RSpec.describe SemestersController, type: :controller do
       allow(course).to receive(:save).and_return(false)
       post :create, params: { course_id: course.id, semester: { start_year: semester.start_year,
                                                                 end_year: semester.end_year,
-                                                                number: semester.number }
+                                                                number: semester.number } }
       should redirect_to course_semesters_url(course.id)
       expect(flash[:alert]).to start_with('Failed to create semester.')
     end
