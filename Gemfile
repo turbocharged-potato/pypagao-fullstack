@@ -35,6 +35,9 @@ gem 'jquery-rails'
 # FontAwesome!
 gem 'font-awesome-sass', '~> 5.0.0'
 
+# Compress assets!
+gem 'heroku-deflater', :group => :production
+
 group :test do
   # Test coverage
   gem 'coveralls', require: false
