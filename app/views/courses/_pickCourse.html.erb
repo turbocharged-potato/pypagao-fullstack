@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body">
                 
-        <%= form_for Course.new, url: {action: "create"} do |f| %>
+        <%= form_for Course.new, url: university_courses_url(@university.id), method: 'POST' do |f| %>
           <%= f.hidden_field :university_id, :value => @university.id, class: 'form-control' %>
           <%= label_tag(:code, "Code:") %>
           <%= f.text_field :code,  class: 'form-control'%>
