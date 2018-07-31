@@ -33,7 +33,7 @@ gem 'bootstrap'
 # jQuery
 gem 'jquery-rails'
 # FontAwesome!
-gem 'font-awesome-sass', '~> 5.0.0'
+gem 'font-awesome-sass', '~> 5.2.0'
 
 # Compress assets!
 gem 'heroku-deflater', :group => :production
