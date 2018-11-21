@@ -3,7 +3,6 @@
 <%= render "shared/question", question: @question %>
 <h2>
   Answers
-  <%= link_to icon('fas', 'plus'), '#newAnswer', class: 'btn btn-primary', 'data-toggle' => 'modal' %>
 </h2>
 
 
@@ -36,3 +35,5 @@
     </div>
   </div>
 </div>
+
+<%= link_to '+', '#newAnswer', class: 'btn btn-primary', 'data-toggle' => 'modal' %>
