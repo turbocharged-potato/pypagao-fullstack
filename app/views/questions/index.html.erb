@@ -4,7 +4,6 @@
 </h2>
 <h3>
   Questions
-  <%= link_to icon('fas', 'plus'), '#newQuestion', class: 'btn btn-primary', 'data-toggle' => 'modal' %>
 </h3>
 
 <% @questions.each do |question| %>
@@ -40,3 +39,4 @@
     </div>
   </div>
 </div>
+<%= link_to '+', '#newQuestion', class: 'btn btn-primary', 'data-toggle' => 'modal' %>
